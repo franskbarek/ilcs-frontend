@@ -16,6 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import logo from '../assets/logo-insw.png'
+import DateTimeDisplay from '../utils/DateTimeDisplay';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -188,9 +189,10 @@ export default function Navbar() {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
+              {/* <Badge badgeContent={4} color="error">
                 <MailIcon />
-              </Badge>
+              </Badge> */}
+            <DateTimeDisplay />
             </IconButton>
             <IconButton
               size="large"

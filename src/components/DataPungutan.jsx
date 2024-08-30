@@ -1,13 +1,21 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../context/DataContext';
 
 const DataPungutan = () => {
   const { dataPungutan, setDataPungutan } = useContext(DataContext);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('http://api-hub.ilcs.co.id/test/v2/dataPungutan?id_aju=04eb6a72-bb63-5aed-5e92-f58a3bfd5da2')
       .then(response => response.json())
-      .then(data => setDataPungutan(data.data)); // Updated to only set data object
+      .then(data => {
+        setDataPungutan(data.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      });
   }, [setDataPungutan]);
 
   const handleInputChange = (e) => {
@@ -17,6 +25,15 @@ const DataPungutan = () => {
       [name]: value
     }));
   };
+
+  if (loading) {
+    return (
+      <div className="p-4 bg-white shadow rounded">
+        <h1 className="text-xl font-bold mb-4">Data Pungutan</h1>
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="p-4 bg-white shadow rounded">

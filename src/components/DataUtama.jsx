@@ -1,14 +1,31 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../context/DataContext';
 
 const DataUtama = () => {
   const { dataUtama, setDataUtama } = useContext(DataContext);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('https://api-hub.ilcs.co.id/test/v2/dataUtama?nomor_pengajuan=20120B388FAE20240402000001')
       .then(response => response.json())
-      .then(data => setDataUtama(data.data)); // Mengakses objek data secara langsung
+      .then(data => {
+        setDataUtama(data.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      });
   }, [setDataUtama]);
+
+  if (loading) {
+    return (
+      <div className="p-4 bg-white shadow rounded">
+        <h1 className="text-xl font-bold">Data Utama</h1>
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="p-4 bg-white shadow rounded">
