@@ -33,13 +33,13 @@ export default function LabTabs() {
         </div>
         <div className="p-2">
           <img src={ImageMenu2} alt="ImageMenu1" width={70} />
-          <p>Transportasi</p>
+          <p>Dokumen</p>
         </div><div className="p-2">
           <img src={ImageMenu3} alt="ImageMenu1" width={70} />
-          <p>Transportasi</p>
+          <p>Komuditi</p>
         </div><div className="p-2">
           <img src={ImageMenu4} alt="ImageMenu1" width={70} />
-          <p>Transportasi</p>
+          <p>Layanan</p>
         </div>
       </div>
       <h1 className="p-4 text-xl font-bold text-gray-700">Data Pemberitahuan</h1>
